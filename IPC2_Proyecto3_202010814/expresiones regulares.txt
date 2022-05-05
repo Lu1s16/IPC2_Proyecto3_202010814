@@ -1,0 +1,8 @@
+Er para fechas
+[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]\ [0-9][0-9]\:[0-9][0-9]
+
+ER para usuario
+([a-zA-Z]|[0-9])+\@?(([+A-zA-Z]|[0-9])+\.?)+
+
+Er para lugar y red social
+[a-zA-Z]+
