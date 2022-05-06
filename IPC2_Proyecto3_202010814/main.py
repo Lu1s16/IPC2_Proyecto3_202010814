@@ -30,6 +30,7 @@ def ConsultarDatos():
     
     raiz = ET.XML(xml)
     
+    mensaje_de_todo = ""
 
     
     for elem in raiz:
@@ -114,11 +115,22 @@ def ConsultarDatos():
             Datos.crear_lista_diccionarios(dic_sen, dic_emp)  #diccionario con sentimientos y empresas
 
 
-    print("Hola")
+    print("Datos del xml")
+    mensaje_de_todo+="Datos del xml"
+    mensaje_de_todo+="\n\n"
     datos = Datos.get_lista()
     for c in datos:
-        print("datos:")
         print(c.dic_emp)
+        print("")
+        print(c.dic_sen)
+        print("")
+        msg1 = str(c.dic_emp)
+        mensaje_de_todo+= msg1 + "\n" + "\n"
+        msg2 = str(c.dic_sen)
+        mensaje_de_todo+= msg2 + "\n" + "\n"
+
+    print("")
+    print("DATOS DE LOS MENSAJES")
 
     mensajes =[]  #lista con datos del mensaje incluido el mensaje
 
@@ -170,7 +182,7 @@ def ConsultarDatos():
                             elif not re.search(r'[a-zA-Z]', caracter_pre):
                                 Lugar = variable
                                 #lugar = lugar_con_espacios.strip(" ")
-                                print(Lugar)
+                                
                                 variable = ""
                                 get_lugar = False
                                 get_fecha = True
@@ -188,7 +200,7 @@ def ConsultarDatos():
 
                             if re.search(r'[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]\ [0-9][0-9]\:[0-9][0-9]', variable):
                                 Fecha = variable
-                                print(Fecha)
+                                
                                 variable = ""
                                 get_fecha = False
                                 get_usuario = True
@@ -221,14 +233,14 @@ def ConsultarDatos():
 
                                 if re.search(r'([a-zA-Z]|[0-9])+\@?(([+A-zA-Z]|[0-9])+\.?)+', sin_espacio):
                                     Usuario = sin_espacio
-                                    print(Usuario)
+                                    
                                     variable = ""
                                     get_usuario = False
                                     get_red_social = True
                                     break
 
                                 else:
-                                    print("error con el usuario")
+                                   
                                     break
 
                             i+=1
@@ -254,7 +266,7 @@ def ConsultarDatos():
                             elif not re.search(r'[a-zA-Z]', caracter_pre):
                                
                                 Red_Social = variable
-                                print(Red_Social)
+                                
                                 
                                 variable = ""
                                 get_red_social = False
@@ -289,10 +301,25 @@ def ConsultarDatos():
                     mensajes.append(Nuevo_mensaje)
 
                     
-                print("")
+    print("")
 
-         
-    
+    mensaje_de_todo+="Datos del mensaje del xml" + "\n"
+    for c in mensajes:
+        place = str(c.lugar)
+        print(place)
+        mensaje_de_todo+= place + "\n" + "\n"
+        hour = str(c.lugar)
+        print(hour)
+        mensaje_de_todo+= hour + "\n" + "\n"
+        user = str(c.usuario)
+        print(user)
+        mensaje_de_todo+= user + "\n" + "\n"
+        mensaje_de_todo+= str(c.red_social) + "\n" + "\n"
+        print(c.red_social)
+        mensaje_de_todo+= str(c.msg) + "\n" + "\n"
+        print(c.msg)
+        print("")
+ 
     
     list_respuestas = []
     for dato in mensajes:
@@ -351,7 +378,7 @@ def ConsultarDatos():
         
         for c in datos:
             lista_empresas_archivo = c.dic_emp.keys()
-            print("PRIMEROS DATOS PARA PROBAR:",lista_empresas_archivo)
+            
         
        
             
@@ -361,7 +388,7 @@ def ConsultarDatos():
 
             #verifico que exista la empresa en el msg
             if c.strip(" ") in palabras:
-                print("EMPRESA:",c.strip(" "))
+               
                 
                 empresa_del_mensaje = c.strip(" ")
                 calificacion_empresa = calificacion_mensaje
@@ -413,7 +440,7 @@ def ConsultarDatos():
                         alias_servicio = servicio_empresa_dic.get(servicio)
                         
                         if servicio in oracion:
-                            print("SERVICIO:", servicio)
+                           
 
                             
                             
@@ -441,7 +468,7 @@ def ConsultarDatos():
                                
                                 
                                 if alias.strip(" ") in oracion:
-                                    print("ALIAS",alias.strip(" "))
+                                    
                                     nombre_alias = alias.strip(" ")
 
                                     if positivos_oracion == negativos_oracion:
@@ -475,13 +502,7 @@ def ConsultarDatos():
 
 
 
-        print("")
-        print("")
-        print("fin")
-
-    print("")
-    print("")
-    print("")      
+   
 
     for element in list_respuestas:
         print("fecha:",element.Fecha)
@@ -501,7 +522,7 @@ def ConsultarDatos():
         print("") 
 
 
-    return "hola"
+    return mensaje_de_todo
 
 
 
